@@ -477,7 +477,7 @@ function adjustHeader() {
     });
 });
 
-// mCustomScrollbar initialization
+
 // mCustomScrollbar initialization
 (function ($) {
   $(window).resize(function () {

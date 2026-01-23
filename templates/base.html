@@ -112,6 +112,35 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 
+<script  src="{% static 'js/app.js' %}"></script>
+<script>
+  $(function () {
+    $('.slick-carousel').each(function () {
+      var $el = $(this);
+      if ($el.hasClass('slick-initialized')) return;
+
+      // If you already have data-slick on the element, slick will read it automatically
+      // but only after you call .slick()
+      $el.slick($el.data('slick') || {});
+    });
+  });
+</script>
+<script>
+  $(function () {
+    $('.slick-slider-area').each(function () {
+      var $area = $(this);
+      var $carousel = $area.find('.slick-carousel');
+      if ($carousel.hasClass('slick-initialized')) return;
+
+      var opts = $carousel.data('slick') || {};
+      opts.arrows = true;
+      opts.prevArrow = $area.find('.slick-prev');
+      opts.nextArrow = $area.find('.slick-next');
+
+      $carousel.slick(opts);
+    });
+  });
+</script>
 
 
 
