@@ -1,10 +1,97 @@
 {% load static %}
 
+{% url 'home' as home_url %}
+{% url 'cars' as cars_url %}
+{% url 'about' as about_url %}
+{% url 'services' as services_url %}
+{% url 'contact' as contact_url %}
+
+<style>
+.fpsearch-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 999999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.fpsearch-overlay.open{ display: flex; }
+
+.fpsearch-close{
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  font-size: 46px;
+  line-height: 1;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* FORCE the form to be a real vertical stack */
+.fpsearch-box{
+  width: min(720px, 92vw) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 18px !important;
+  position: relative !important;
+}
+
+/* input */
+.fpsearch-input{
+  width: 100% !important;
+  height: 64px !important;
+  padding: 0 18px !important;
+  font-size: 20px !important;
+  border: 0 !important;
+  outline: none !important;
+  border-radius: 10px !important;
+  background: #fff !important;
+  color: #111 !important;
+  box-shadow: 0 12px 28px rgba(0,0,0,.35) !important;
+  position: relative !important;
+  z-index: 1 !important;
+  margin: 0 !important;
+}
+
+/* button — stop theme from absolute/negative positioning */
+.fpsearch-btn{
+  position: static !important;
+  transform: none !important;
+  top: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+
+  height: 48px !important;
+  padding: 0 44px !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+
+  background: #e60023 !important;
+  color: #fff !important;
+  font-weight: 800 !important;
+  letter-spacing: .6px !important;
+  cursor: pointer !important;
+
+  z-index: 2 !important;
+  box-shadow: 0 10px 22px rgba(0,0,0,.28) !important;
+}
+.fpsearch-btn:hover{ opacity: .92; }
+</style>
+
+
 <header class="main-header sticky-header header-with-top">
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light">
 
-      <a class="navbar-brand company-logo" href="{% url 'home' %}">
+      <a class="navbar-brand company-logo" href="{{ home_url }}">
         <img
           id="customSiteLogo"
           class="custom-site-logo"
@@ -25,31 +112,36 @@
         <ul class="navbar-nav ml-auto">
 
           <li class="nav-item">
-            <a class="nav-link {% if request.path == '/' %}active{% endif %}"
-               href="{% url 'home' %}">Home</a>
+            <a class="nav-link {% if request.path == home_url %}active{% endif %}"
+               href="{{ home_url }}">Home</a>
           </li>
 
           <li class="nav-item">
             <a class="nav-link {% if '/cars/' in request.path %}active{% endif %}"
-               href="{% url 'cars' %}">Cars</a>
+               href="{{ cars_url }}">Cars</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link {% if request.path == '/about/' %}active{% endif %}"
-               href="{% url 'about' %}">About</a>
+            <a class="nav-link {% if request.path == about_url %}active{% endif %}"
+               href="{{ about_url }}">About</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link {% if request.path == '/services/' %}active{% endif %}"
-               href="{% url 'services' %}">Services</a>
+            <a class="nav-link {% if request.path == services_url %}active{% endif %}"
+               href="{{ services_url }}">Services</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}"
-               href="{% url 'contact' %}">Contact</a>
+            <a class="nav-link {% if request.path == contact_url %}active{% endif %}"
+               href="{{ contact_url }}">Contact</a>
           </li>
 
-
+          <!-- Search Icon -->
+          <li class="nav-item dropdown m-hide">
+            <a href="javascript:void(0)" class="nav-link h-icon" id="openSearch">
+              <i class="fa fa-search"></i>
+            </a>
+          </li>
 
         </ul>
       </div>
@@ -58,8 +150,62 @@
   </div>
 </header>
 
-{% url 'home' as home_url %}
-{% url 'cars' as cars_url %}
-{% url 'about' as about_url %}
-{% url 'services' as services_url %}
-{% url 'contact' as contact_url %}
+<!-- FULL PAGE SEARCH OVERLAY -->
+<div id="full-page-search" class="fpsearch-overlay">
+  <a href="javascript:void(0)" class="fpsearch-close" id="closeSearch">&times;</a>
+
+  <form onsubmit="goSearch(event)" class="fpsearch-box">
+    <input
+      type="search"
+      id="searchInput"
+      class="fpsearch-input"
+      placeholder="type keyword(s) here. Eg: audi, benz etc"
+      required
+    />
+    <button type="submit" class="fpsearch-btn">SEARCH</button>
+  </form>
+
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var overlay = document.getElementById("full-page-search");
+  var openBtn = document.getElementById("openSearch");
+  var closeBtn = document.getElementById("closeSearch");
+
+  if (!overlay || !openBtn || !closeBtn) return;
+
+  function openOverlay(e){
+    if (e) e.preventDefault();
+    overlay.classList.add("open");
+    var input = overlay.querySelector(".fpsearch-input");
+    if (input) input.focus();
+  }
+
+  function closeOverlay(e){
+    if (e) e.preventDefault();
+    overlay.classList.remove("open");
+  }
+
+  openBtn.addEventListener("click", openOverlay);
+  closeBtn.addEventListener("click", closeOverlay);
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeOverlay();
+  });
+
+  overlay.addEventListener("click", function (e) {
+    if (e.target === overlay) closeOverlay();
+  });
+});
+</script>
+<script>
+function goSearch(e){
+  e.preventDefault();
+  const val = document.getElementById("searchInput").value.trim();
+  if (!val) return;
+
+  window.location.href = `/cars/search=${encodeURIComponent(val)}`;
+}
+</script>

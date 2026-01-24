@@ -55,12 +55,20 @@
 
 <!-- Full Page Search -->
 <div id="full-page-search">
-    <button type="button" class="close">×</button>
-    <form action="https://storage.googleapis.com/theme-vessel/carhouse/index.html#" class="search-header">
-        <input type="search" value="" placeholder="type keyword(s) here. Eg: audi, benz etc" />
-        <button type="submit" class="btn btn-sm button-theme">Search</button>
-    </form>
+  <a href="#" class="close">×</a>
+
+  <form action="{% url 'search' %}" method="GET" class="search-header">
+    <input
+      type="search"
+      name="q"
+      value="{{ request.GET.q }}"
+      placeholder="type keyword(s) here. Eg: audi, benz etc"
+      required
+    />
+    <button type="submit" class="btn btn-sm button-theme">Search</button>
+  </form>
 </div>
+
 
 {% include 'includes/footer.html' %}
 
@@ -112,7 +120,6 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 
-<script  src="{% static 'js/app.js' %}"></script>
 <script>
   $(function () {
     $('.slick-carousel').each(function () {

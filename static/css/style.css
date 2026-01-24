@@ -23,6 +23,25 @@ p {
 strong {
     color: #535353;
 }
+/* Remove red overlay/tint from active thumbnail */
+.carousel-indicators.car-properties li.active a::after,
+.carousel-indicators.car-properties li.active::after,
+.carousel-indicators.car-properties a.selected::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Make sure active thumbnail image stays normal */
+.carousel-indicators.car-properties li.active img {
+  opacity: 1 !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+}
+
+/* Optional: give active thumbnail a clean border instead */
+.carousel-indicators.car-properties li.active img {
+  border: 2px solid #e60023;
+}
 
 span {
     color: #535353;
