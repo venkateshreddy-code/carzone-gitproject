@@ -34,6 +34,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "cars.apps.CarsConfig",
     "pages.apps.PagesConfig",
+    "accounts.apps.AccountsConfig",
+    "contacts.apps.ContactsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -41,7 +43,16 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "ckeditor",
-    "django.contrib.humanize"
+    "django.contrib.humanize",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+
+    #Providers
+    "allauth.socialaccount.providers.facebook",
+    "allauth.socialaccount.providers.google",
+
 ]
 
 MIDDLEWARE = [
@@ -52,6 +63,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = "carzone.urls"
@@ -120,6 +133,14 @@ USE_I18N = True
 
 USE_TZ = True
 
+SITE_ID = 2
+
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
+ACCOUNT_LOGOUT_ON_GET = True
+LOGIN_REDIRECT_URL = "/accounts/dashboard/"
+ACCOUNT_LOGOUT_REDIRECT_URL = "/"
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
@@ -137,3 +158,18 @@ STATIC_ROOT = BASE_DIR / "staticfiles"  # only for collectstatic (production)
 # Media local_settings
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# messages
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR:'danger',
+
+}
+
+
+# Email sending
+EMAIL_HOST ="smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'samsmithss012@gmail.com'
+EMAIL_HOST_PASSWORD = 'ffiawyqvrabieoip'
+EMAIL_USE_TLS = True

@@ -1,25 +1,108 @@
 <!-- Top header start -->
 <header class="top-header th-2 top-header-bg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-7">
-                <div class="list-inline">
-                    <a href="tel:+1 561-927-5851"><i class="fa fa-phone"></i>+1 561-927-5851</a>
-                    <a href="venkateshreddyningam@gmail.com"><i class="fa fa-envelope"></i>venkateshreddyningam@gmail.com</a>
-                    <a href="tel:info@themevessel.com"><i class="fa fa-clock-o"></i>Mon - Sun: 8:00am - 6:00pm</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-5">
-                <ul class="top-social-media pull-right">
-                    <li>
-                        <a href="login.html" class="sign-in"><i class="fa fa-sign-in"></i> Login</a>
-                    </li>
-                    <li>
-                        <a href="signup.html" class="sign-in"><i class="fa fa-user"></i> Register</a>
-                    </li>
-                </ul>
-            </div>
+<style>
+  /* ===== Exact match for Dashboard button ===== */
+
+  .top-header .nav-btn {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* Remove form spacing */
+  .top-header .nav-btn form {
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+  }
+
+  /* Reset button defaults */
+  .top-header .nav-link-btn {
+    all: unset;
+    box-sizing: border-box;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    height: 36px;              /* 🔥 MATCHES DASHBOARD */
+    padding: 0 18px;           /* 🔥 MATCHES DASHBOARD */
+
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 3px;
+
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    line-height: 1;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  /* Hover effect (same as Dashboard) */
+  .top-header .nav-link-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #fff;
+  }
+
+  .top-header .nav-link-btn i {
+    font-size: 13px;
+  }
+  </style>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-8 col-sm-7">
+        <div class="list-inline">
+          <a href="tel:+1 561-927-5851"><i class="fa fa-phone"></i>+1 561-927-5851</a>
+          <a href="mailto:venkateshreddyningam@gmail.com"><i class="fa fa-envelope"></i>venkateshreddyningam@gmail.com</a>
+          <a href="#"><i class="fa fa-clock-o"></i>Mon - Sun: 8:00am - 6:00pm</a>
         </div>
+      </div>
+
+      <div class="col-lg-4 col-md-4 col-sm-5">
+        <ul class="top-social-media pull-right">
+
+          {% if user.is_authenticated %}
+          <li>
+      <a href="{% url 'dashboard' %}" class="sign-in">
+        <i class="fa fa-tachometer"></i> Dashboard
+      </a>
+    </li>
+
+    <li class="nav-btn">
+      <form action="{% url 'account_logout' %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="nav-link-btn">
+        <i class="fa fa-sign-out"></i> LOGOUT
+      </button>
+    </form>
+
+    </li>
+
+
+
+
+          {% else %}
+            <li>
+              <a href="{% url 'login' %}" class="sign-in">
+                <i class="fa fa-sign-in"></i> Login
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'register' %}" class="sign-in">
+                <i class="fa fa-user"></i> Register
+              </a>
+            </li>
+          {% endif %}
+
+        </ul>
+      </div>
     </div>
+  </div>
 </header>
 <!-- Top header end -->

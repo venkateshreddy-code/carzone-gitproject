@@ -84,6 +84,25 @@
   box-shadow: 0 10px 22px rgba(0,0,0,.28) !important;
 }
 .fpsearch-btn:hover{ opacity: .92; }
+
+/* Navbar must stay BELOW modal */
+.main-header,
+.sticky-header,
+.navbar {
+  z-index: 1020 !important;
+}
+
+/* Full page search must also stay below modal */
+.fpsearch-overlay {
+  z-index: 1010 !important;
+}
+.modal {
+  z-index: 1055 !important;
+}
+.modal-backdrop {
+  z-index: 1050 !important;
+}
+
 </style>
 
 

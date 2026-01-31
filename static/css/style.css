@@ -19,6 +19,24 @@ p {
     font-weight: 500;
     color: #535353;
 }
+/* FORCE ACTION BUTTON TO ALWAYS BE VISIBLE */
+.table td .btn {
+    background-color: #212529;   /* dark */
+    color: #ffffff !important;   /* white text */
+    border: 1px solid #212529;
+}
+
+/* Keep hover effect clean */
+.table td .btn:hover {
+    background-color: #000;
+    border-color: #000;
+    color: #fff !important;
+}
+
+/* Prevent row hover from hiding content */
+.table tbody tr:hover td {
+    color: inherit;
+}
 
 strong {
     color: #535353;

@@ -478,6 +478,7 @@ function adjustHeader() {
 });
 
 
+
 // mCustomScrollbar initialization
 (function ($) {
   $(window).resize(function () {
@@ -491,3 +492,9 @@ function adjustHeader() {
     }
   }).trigger("resize");
 })(jQuery);
+
+
+
+setTimeout(function () {
+  $('.js-message').fadeOut('slow');
+}, 4000);
