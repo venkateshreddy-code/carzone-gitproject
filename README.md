@@ -16,6 +16,68 @@ This project is **live, deployed, and fully functional**.
 
 ---
 
+
+## 📸 Screenshots (Project Walkthrough)
+
+### 🏠 Home Page
+
+![Home Page](https://res.cloudinary.com/dh9gs449u/image/upload/v1769894217/Screenshot_2026-01-31_at_4.11.04_PM_vlnifj.png)
+
+---
+
+### ⭐ Featured Cars
+
+![Featured Cars](https://res.cloudinary.com/dh9gs449u/image/upload/v1769894216/Screenshot_2026-01-31_at_4.11.12_PM_ygwu6e.png)
+
+---
+
+### 🚗 Cars Listing & Search
+
+![Cars Page](https://res.cloudinary.com/dh9gs449u/image/upload/v1769894212/Screenshot_2026-01-31_at_4.11.29_PM_ydpnfw.png)
+
+---
+
+### 💬 Send Message (Car Inquiry)
+
+Users can send inquiries directly from individual car pages.
+
+![Send Message](https://res.cloudinary.com/dh9gs449u/image/upload/v1769894215/Screenshot_2026-01-31_at_4.11.35_PM_vfblcg.png)
+
+---
+
+### 📧 Email Notification – Car Inquiry
+
+Real email notification sent to admin after car inquiry submission.
+
+![Inquiry Email Proof](https://res.cloudinary.com/dh9gs449u/image/upload/v1769894213/Screenshot_2026-01-31_at_4.11.43_PM_miz5rc.png)
+
+---
+
+### 📞 Contact Us Page
+
+Users can send general messages using the Contact page.
+
+![Contact Us](https://res.cloudinary.com/dh9gs449u/image/upload/v1769894213/Screenshot_2026-01-31_at_4.12.09_PM_ies5se.png)
+
+---
+
+### 📧 Email Notification – Contact Message
+
+Email notification sent to admin after Contact form submission.
+
+![Contact Email Proof](https://res.cloudinary.com/dh9gs449u/image/upload/v1769894212/Screenshot_2026-01-31_at_4.12.17_PM_yen0vp.png)
+
+---
+
+### 🛠 Admin Dashboard
+
+Admin panel to manage cars, users, and customer inquiries.
+
+![Admin Dashboard](https://res.cloudinary.com/dh9gs449u/image/upload/v1769894212/Screenshot_2026-01-31_at_4.14.54_PM_kieihg.png)
+
+---
+
+
 ## ✨ Features
 
 ### 👤 User Features
